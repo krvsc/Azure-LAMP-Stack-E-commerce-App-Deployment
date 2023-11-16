@@ -153,5 +153,5 @@ sudo systemctl enable apache2
 ```
 #bash
 sudo apt install -y git
-sudo git clone https://github.com/krvsc/Linux2Devops.git /var/www/html/
+sudo git clone https://github.com/krvsc/Azure-LAMP-Stack-E-commerce-App-Deployment.git /var/www/html/
 ```
