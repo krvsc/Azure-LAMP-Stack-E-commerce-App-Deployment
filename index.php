@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Kodekloud E-Commerce</title>
+        <title>Azure-LAMP-Stack-E-commerce</title>
 
         <!-- Favicon -->
         <link rel="icon" href="img/favicon.png" type="image/png" />
@@ -26,8 +26,8 @@
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
     <body>
@@ -65,8 +65,8 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <div class="col-md-9 p0">
                             <ul class="nav navbar-nav main_nav">
-                              <li><a href="#">Laptops</a></li>
-                              <li><a href="#">Drones</a></li>
+                                <li><a href="#">Laptops</a></li>
+                                <li><a href="#">Drones</a></li>
                                 <li><a href="#">Gadgets</a></li>
                                 <li><a href="#">Phones</a></li>
                                 <li><a href="#">VR</a></li>
@@ -102,9 +102,9 @@
                 <h2>Product List</h2>
             </div>
             <div class="row it_works">
-              <?php
+            <?php
 
-                        $link = mysqli_connect('172.20.1.101', 'ecomuser', 'ecompassword', 'ecomdb');
+                        $link = mysqli_connect('20.198.75.153', 'ecomuser', 'ecompassword', 'ecomdb');
 
                         if ($link) {
                         $res = mysqli_query($link, "select * from products;");
@@ -154,7 +154,7 @@
 
 
                 <div class="copy_right_area">
-                    <h4 class="copy_right">© Copyright 2019 Kodekloud Ecommerce | All Rights Reserved</h4>
+                    <h4 class="copy_right">© Copyright 2019  Azure-LAMP-Stack-E-commerce| All Rights Reserved</h4>
                 </div>
             </div>
         </footer>
