@@ -102,7 +102,7 @@ is_firewalld_rule_configured 80
 print_color "green" "Setting up database.."
 cat > setup-db.sql <<-EOF
   CREATE DATABASE ecomdb;
-  CREATE USER 'ecomuser'@'20.198.75.153' IDENTIFIED BY 'ecompassword';
+  CREATE USER 'ecomuser'@'20.219.142.243' IDENTIFIED BY 'ecompassword';
   GRANT ALL PRIVILEGES ON *.* TO 'ecomuser'@'localhost';
   FLUSH PRIVILEGES;
 EOF
@@ -161,12 +161,12 @@ sudo apt install -y git
 sudo git clone https://github.com/krvsc/Azure-LAMP-Stack-E-commerce-App-Deployment.git /var/www/html/
 
 print_color "green" "Updating index.php.."
-sudo sed -i 's/172.20.1.101/20.198.75.153/g' /var/www/html/index.php
+sudo sed -i 's/172.20.1.101/20.219.142.243/g' /var/www/html/index.php
 
 print_color "green" "---------------- Setup Web Server - Finished ------------------"
 
 # Test Script
-web_page=$(curl http://20.198.75.153)
+web_page=$(curl http://20.219.142.243)
 
 for item in Laptop Drone VR Watch Phone
 do
