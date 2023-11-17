@@ -155,3 +155,6 @@ sudo systemctl enable apache2
 sudo apt install -y git
 sudo git clone https://github.com/krvsc/Azure-LAMP-Stack-E-commerce-App-Deployment.git /var/www/html/
 ```
+>**Update index.php**
+
+Update the index.php file to connect to the right database server:
