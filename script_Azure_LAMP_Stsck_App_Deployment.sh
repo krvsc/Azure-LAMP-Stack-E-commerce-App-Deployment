@@ -37,22 +37,6 @@ function check_service_status(){
   fi
 }
 
-#######################################
-# Check the status of a firewalld rule. If not configured exit.
-# Arguments:
-#   Port Number. eg: 3306, 80
-#######################################
-function is_firewalld_rule_configured(){
-	firewalld_ports=$(sudo firewall-cmd --list-all --zone=public | grep ports)
-
-  if [[ $firewalld_ports == *$1* ]]
-  then
-    echo "FirewallD has port $1 configured"
-  else
-    echo "FirewallD port $1 is not configured"
-    exit 1
-  fi
-}
 
 #######################################
 # Check if a given item is present in an output
@@ -72,37 +56,23 @@ function check_item(){
 
 echo "---------------- Setup Database Server ------------------"
 
-# Install and configure firewalld
-print_color "green" "Installing FirewallD.. "
-sudo apt install -y firewalld
-
-print_color "green" "Installing FirewallD.. "
-sudo service firewalld start
-sudo systemctl enable firewalld
 # Install and configure Maria-DB
 print_color "green" "Installing MariaDB Server.."
 sudo apt install -y mariadb-server
 
 print_color "green" "Starting MariaDB Server.."
-sudo service mariadb start
+sudo systemctl start mariadb 
 sudo systemctl enable mariadb
 
 # Check FirewallD Service is running
 check_service_status mariadb
-
-# Configure Firewall rules for Database
-print_color "green" "Configuring FirewallD rules for database.."
-sudo firewall-cmd --permanent --zone=public --add-port=80/tcp
-sudo firewall-cmd --reload
-
-is_firewalld_rule_configured 80
 
 
 # Configuring Database
 print_color "green" "Setting up database.."
 cat > setup-db.sql <<-EOF
   CREATE DATABASE ecomdb;
-  CREATE USER 'ecomuser'@'20.219.142.243' IDENTIFIED BY 'ecompassword';
+  CREATE USER 'ecomuser'@'20.244.117.210' IDENTIFIED BY 'ecompassword';
   GRANT ALL PRIVILEGES ON *.* TO 'ecomuser'@'localhost';
   FLUSH PRIVILEGES;
 EOF
@@ -140,12 +110,7 @@ print_color "green" "---------------- Setup Web Server ------------------"
 print_color "green" "Installing Web Server Packages .."
 sudo apt install -y httpd php php-mysql
 
-# Configure firewalld rules
-print_color "green" "Configuring FirewallD rules.."
-sudo firewall-cmd --permanent --zone=public --add-port=80/tcp
-sudo firewall-cmd --reload
 
-is_firewalld_rule_configured 80
 
 # Update index.php
 sudo sed -i 's/index.html/index.php/g' /etc/httpd/conf/httpd.conf
@@ -161,12 +126,12 @@ sudo apt install -y git
 sudo git clone https://github.com/krvsc/Azure-LAMP-Stack-E-commerce-App-Deployment.git /var/www/html/
 
 print_color "green" "Updating index.php.."
-sudo sed -i 's/172.20.1.101/20.219.142.243/g' /var/www/html/index.php
+sudo sed -i 's/172.20.1.101/20.244.117.210/g' /var/www/html/index.php
 
 print_color "green" "---------------- Setup Web Server - Finished ------------------"
 
 # Test Script
-web_page=$(curl http://20.219.142.243)
+web_page=$(curl http://20.244.117.210)
 
 for item in Laptop Drone VR Watch Phone
 do
