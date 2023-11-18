@@ -58,6 +58,7 @@ echo "---------------- Setup Database Server ------------------"
 
 # Install and configure Maria-DB
 print_color "green" "Installing MariaDB Server.."
+sudo apt update
 sudo apt install -y mariadb-server
 
 print_color "green" "Starting MariaDB Server.."
