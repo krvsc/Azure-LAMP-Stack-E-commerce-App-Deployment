@@ -26,9 +26,9 @@ function print_color(){
 #   Service Name. eg: firewalld, mariadb
 #######################################
 function check_service_status(){
-  service_is_active=$(sudo systemctl is-active $1)
+  service_is_active=$(sudo service $1 status | grep "Active:" | awk '{print $2}')
 
-  if [ $service_is_active = "active" ]
+  if [ "$service_is_active" = "active" ]
   then
     echo "$1 is active and running"
   else
@@ -36,6 +36,7 @@ function check_service_status(){
     exit 1
   fi
 }
+
 
 
 #######################################
