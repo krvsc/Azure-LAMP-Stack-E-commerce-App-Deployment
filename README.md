@@ -1,4 +1,4 @@
-# Azure LAMP Stack E-commerce App Deployment
+# Azure TechScript Mall Deployment
 
 ## Introduction
 This is a sample e-commerce application built for learning purposes.
