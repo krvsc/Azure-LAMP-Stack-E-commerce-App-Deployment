@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Automate Azure-LAMP-Stack-E-commerce Deployment
+# LAMP-Stack-E-commerce Deployment
 # Author: Vijay Kumar Singh
 
 #######################################
